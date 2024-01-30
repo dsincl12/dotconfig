@@ -1,42 +1,32 @@
 return {
   "folke/noice.nvim",
-  opts = function(_, opts)
-    opts.routes = {
-      { -- filter write messages "xxxL, xxxB""
+  opts = {
+    presets = {
+      bottom_search = false,
+    },
+    views = {
+      cmdline_popup = {
+        position = {
+          row = "50%",
+          col = "50%",
+        },
+      },
+    },
+    routes = {
+      {
         filter = {
           event = "msg_show",
-          find = "%dL",
+          any = {
+            { find = "%dL" },
+            { find = "%d line" },
+            { find = "%d lines" },
+            { find = "%d more line" },
+            { find = "%d more lines" },
+            { find = "%d change" },
+            { find = "%d fewer" },
+          },
         },
-        opts = { skip = true },
       },
-      { -- filter lines yanked etc
-        filter = {
-          event = "msg_show",
-          find = "%d lines",
-        },
-        opts = { skip = true },
-      },
-      { -- filter more lines
-        filter = {
-          event = "msg_show",
-          find = "%d more lines",
-        },
-        opts = { skip = true },
-      },
-      { -- filter more lines
-        filter = {
-          event = "msg_show",
-          find = "%d change",
-        },
-        opts = { skip = true },
-      },
-      { -- filter more lines
-        filter = {
-          event = "msg_show",
-          find = "%d fewer",
-        },
-        opts = { skip = true },
-      },
-    }
-  end,
+    },
+  },
 }
