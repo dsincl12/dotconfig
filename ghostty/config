@@ -1,0 +1,48 @@
+# The syntax is "key = value". The whitespace around the equals doesn't matter.
+foreground = d1d5da
+background = 16161e
+
+# background-opacity = 0.8
+
+window-decoration = false
+shell-integration-features = no-cursor
+
+font-family = MesloLGM Nerd Font
+font-size = 12
+font-thicken = true
+
+adjust-cell-height = -1
+adjust-cell-width = -1
+
+window-padding-x = 6
+window-padding-y = 2
+window-padding-balance = true
+
+# Colors can be changed by setting the 16 colors of `palette`, which each color
+# being defined as regular and bold.
+#
+# black
+palette = 0=#586069
+palette = 8=#959da5
+# red
+palette = 1=#ea4a5a
+palette = 9=#f97583
+# green
+palette = 2=#34d058
+palette = 10=#85e89d
+# yellow
+palette = 3=#ffea7f
+palette = 11=#ffea7f
+# blue
+palette = 4=#2188ff
+palette = 12=#79b8ff
+# purple
+palette = 5=#b392f0
+palette = 13=#b392f0
+# aqua
+palette = 6=#39c5cf
+palette = 14=#56d4dd
+# white
+palette = 7=#39c5cf
+palette = 15=#fafbfc
+
