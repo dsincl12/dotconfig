@@ -3,3 +3,4 @@
 -- Add any additional options here
 
 vim.opt.fillchars = { eob = " " }
+vim.g.root_spec = { "cwd" }
