@@ -5,6 +5,7 @@ background = 16161e
 # background-opacity = 0.8
 
 window-decoration = false
+window-padding-color = background
 shell-integration-features = no-cursor
 
 font-family = MesloLGM Nerd Font
