@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost" }, {
 
     local filepath = format_filepath()
 
-    local status_ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", filepath, { scope = "local" })
+    local status_ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", filepath, {})
     if not status_ok then
       return
     end
