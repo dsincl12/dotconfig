@@ -12,8 +12,12 @@ local function format_filepath()
   local prefix = "%=%m %#Italic#"
   local filepath = "%f"
 
+  if vim.fn.expand("%f") == "." then
+    return prefix .. " "
+  end
+
   if not is_empty(filepath) then
-    return prefix .. filepath
+    return prefix .. filepath .. " "
   end
 end
 
@@ -29,9 +33,24 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost" }, {
       return
     end
 
+    -- Check if the current buffer is valid and listed
+    if not vim.api.nvim_buf_is_valid(0) or not vim.bo.buflisted then
+      return
+    end
+
+    -- Check if we're in a normal window (not a floating window or special buffer)
+    if vim.fn.win_gettype() ~= "" then
+      return
+    end
+
+    -- Check if there's enough room for the winbar
+    if vim.api.nvim_win_get_height(0) <= 1 then
+      return
+    end
+
     local filepath = format_filepath()
 
-    local status_ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", filepath, {})
+    local status_ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", filepath, { scope = "local" })
     if not status_ok then
       return
     end
@@ -58,7 +77,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
         return
       end
 
-      vim.api.nvim_buf_set_option(0, "bufhidden", "wipe")
+      vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = 0 })
 
       require("telescope.builtin").find_files({
         cwd = vim.fn.expand("%:p:h"),
